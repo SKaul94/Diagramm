@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0"><style>
+    textarea {
+        width: 90vw;
+        height: 50vh;
+    }
+</style>
+
+<script src="https://ccmjs.github.io/mkaul-components/difference_chart/versions/ccm.difference_chart-4.0.0.js"></script>
+
+<ccm-difference_chart-4-0-0 id="diff" font_size="11" truncate="63">
+    <questions>
+        <question>Frage 1</question>
+        <question>Frage 2</question>
+        <question>Frage 3</question>
+        <question>Frage 4</question>
+        <question>Frage 5</question>
+        <question>Frage 6</question>
+        <question>Frage 7</question>
+        <question>Frage 8</question>
+    </questions>
+    <values>
+        <array>
+            40, 45, 50, 55, 45, 60, 65, 68
+        </array>
+        <array>
+            64, 52, 42, 56, 51, 41, 57, 52
+        </array>
+    </values>
+    <raster>
+        <array>40, 50, 60</array>
+    </raster>
+    <make tag="html">
+        <main>
+            <svg style="border: thin black solid; margin: 2px;" viewBox="0 0 600 160">
+                <rect stroke="grey" x="290" y="20" width="300" height="130" fill="transparent" />
+            </svg>
+        </main>
+    </make>
+</ccm-difference_chart-4-0-0>
+<textarea id="in"></textarea>
+<script>
+  const textarea = document.getElementById("in");
+  const diff = document.getElementById("diff");
+
+  textarea.onkeyup = function(e){
+    diff.setAttribute("update_json", textarea.value);
+  };
+
+  textarea.value = `{
+      "questions":
+        ["Frage 1", "Frage 2", "Frage 3", "Frage 4", "Frage 5", "Frage 6", "Frage 7", "Frage 8"],
+      "values": [
+        [ 40, 45, 50, 55, 45, 60, 65, 68 ],
+        [ 64, 52, 42, 56, 51, 41, 57, 52 ]
+      ],
+      "raster": [40, 50, 60],
+      "colors": ["red","blue","orange","green"],
+      "html": {
+        "main":  {
+          "tag": "svg",
+          "style": "border: thin black solid; margin: 2px;",
+          "viewBox": "0 0 600 160",
+          "inner": [
+            { "tag": "rect", "stroke": "grey", "x": 290, "y": 20, "width": 300, "height": 130, "fill": "transparent" }]}
+      }}`;
+</script>
